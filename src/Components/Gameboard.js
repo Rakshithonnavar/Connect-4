@@ -20,17 +20,12 @@ const GameBoard  = () =>{
   const[currentPlayer,setCurrentPlayer] = useState(PLAYER_1);
   const [gameState,setGameState] = useState(GAME_STATE_PLAYING);
   const [winPlayer,setWinPlayer] = useState(NO_PLAYER);
-//   console.log(gameBoard);
-
-//   useEffect(() =>{
-//     initGame();
-//   },[])
 
 
 const initGame = () =>{
-    // console.log('init')   
+    // console.log('init')  
+    setGameBoard(Array(NO_CIRCLES).fill(NO_PLAYER)); 
     setCurrentPlayer(PLAYER_1);
-    setGameBoard(Array(NO_CIRCLES).fill(NO_PLAYER));
      setGameState(GAME_STATE_PLAYING);
 }
 
@@ -48,7 +43,7 @@ const initGame = () =>{
 //     circleClicked(getComputerMove(gameBoard));
 //   }
     const circleClicked = (id) =>{    
-        console.log('circle clicked:' + id);
+        // console.log('circle clicked:' + id);
         if(gameBoard[id] !== NO_PLAYER)return;
         if(gameState !==  GAME_STATE_PLAYING) return ;
 
@@ -93,9 +88,10 @@ const initGame = () =>{
         //         return circle;
         //     })
         // })
-        setGameBoard(newGameBoard);
+        
         setCurrentPlayer(currentPlayer === PLAYER_1 ? PLAYER_2  :PLAYER_1);
         }
+        setGameBoard(newGameBoard);
         }
 
         // gameBoard[id]= currentPlayer;-->old

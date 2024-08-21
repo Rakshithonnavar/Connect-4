@@ -73,6 +73,7 @@ const getPosition = (gameBoard,moveChecks)=>{
          }
       }
    }
+   return -1;
 };
 export const getComputerMove = (gameBoard) =>{
    let moveChecks = [
@@ -88,17 +89,17 @@ export const getComputerMove = (gameBoard) =>{
       },
       {
          indexes:[0,5,0,15],
-         max:16,
-         sep:16
+         max:1,
+         step:16
       },
       {
          indexes:[3,6,9,12],
-         max:16,
+         max:1,
          step:16
       },
    ];
    let position = getPosition(gameBoard,moveChecks);
-   if(position > 1)
+   if(position >=0)
         return position;
    return getRandomComputerMove(gameBoard);
 };
