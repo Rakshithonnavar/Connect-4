@@ -15,7 +15,7 @@ const Header= ({gameState,currentPlayer,winPlayer}) =>{
             case GAME_STATE_WIN:
                 return <div>Player {winPlayer} Wins </div>
                 case GAME_STATE_DRAW:
-                    return <div>Game is Draw...</div>
+                    return <div>Game is Draw</div>
                 default:
                     return null;
         }

@@ -27,6 +27,7 @@ const initGame = () =>{
     setGameBoard(Array(NO_CIRCLES).fill(NO_PLAYER)); 
     setCurrentPlayer(PLAYER_1);
      setGameState(GAME_STATE_PLAYING);
+     setWinPlayer(NO_PLAYER);
 }
 
   const initBoard = () =>{
@@ -55,8 +56,8 @@ const initGame = () =>{
             setWinPlayer(currentPlayer);
 
         } 
-        else {
-            if (newGameBoard.every(circle => circle !== NO_PLAYER)) {
+        else
+        { if(newGameBoard.every(circle => circle !== NO_PLAYER)) {
                 setGameState(GAME_STATE_DRAW);
                 setWinPlayer(NO_PLAYER);
         }else{
@@ -65,23 +66,23 @@ const initGame = () =>{
         //     setWinPlayer(NO_PLAYER);
         
     
-        // newGameBoard = newGameBoard.map((circle, pos) => {
-        //     if (pos === id) return currentPlayer;
-        //     return circle;
-        // });
+        newGameBoard = newGameBoard.map((circle, pos) => {
+            if (pos === id) return currentPlayer;
+            return circle;
+        });
 
-        // if(isWinner(gameBoard,id,currentPlayer))
-        //     {
-        //         setGameBoard(GAME_STATE_WIN);
-        //         setWinPlayer(currentPlayer);
-        //         // console.log("WINNER");
-        //     }
-            // if(isDraw(gameBoard,id,currentPlayer))
-            //     {
-            //         setGameBoard(GAME_STATE_DRAW);
-            //         setWinPlayer(NO_PLAYER);
-            //         // console.log("WINNER");
-            //     }   
+        if(isWinner(gameBoard,id,currentPlayer))
+            {
+                setGameBoard(GAME_STATE_WIN);
+                setWinPlayer(currentPlayer);
+                // console.log("WINNER");
+            }
+            if(isDraw(gameBoard,id,currentPlayer))
+                {
+                    setGameBoard(GAME_STATE_DRAW);
+                    setWinPlayer(NO_PLAYER);
+                    // console.log("WINNER");
+                }   
         // setGameBoard(prev => {
         //     return prev.map((circle,pos) => {
         //         if(pos === id) return currentPlayer;
@@ -92,7 +93,7 @@ const initGame = () =>{
         setCurrentPlayer(currentPlayer === PLAYER_1 ? PLAYER_2  :PLAYER_1);
         }
         setGameBoard(newGameBoard);
-        }
+        };
 
         // gameBoard[id]= currentPlayer;-->old
         // setGameBoard(gameBoard);  
@@ -128,5 +129,91 @@ const initGame = () =>{
            </>
     ) ;
 };
-
 export default GameBoard;
+
+
+// import React, { useState} from "react";
+// import "../Game.css";
+// import Header from "./Header";
+// import Footer from "./Footer";
+// import GameCircle from "./GameCircle";
+// import { isDraw, isWinner, getComputerMove } from "../helper";
+// import {
+//     GAME_STATE_PLAYING,
+//     GAME_STATE_WIN,
+//     NO_PLAYER,
+//     PLAYER_1,
+//     PLAYER_2,
+//     NO_CIRCLES, 
+//     GAME_STATE_DRAW,
+// } from "../Constants";
+
+// const GameBoard  = () => {
+//     const [gameBoard , setGameBoard] = useState(Array(NO_CIRCLES).fill(NO_PLAYER));
+//     const [currentPlayer, setCurrentPlayer] = useState(PLAYER_1);
+//     const [gameState, setGameState] = useState(GAME_STATE_PLAYING);
+//     const [winPlayer, setWinPlayer] = useState(NO_PLAYER);
+
+//     const initGame = () => {
+//         setGameBoard(Array(NO_CIRCLES).fill(NO_PLAYER)); 
+//         setCurrentPlayer(PLAYER_1);
+//         setGameState(GAME_STATE_PLAYING);
+//         setWinPlayer(NO_PLAYER);
+//     }
+
+//     const initBoard = () => {
+//         const circles = [];
+//         for(let i = 0; i < NO_CIRCLES; i++) {
+//             circles.push(renderCircle(i));
+//         }
+//         return circles;
+//     };
+
+//     const circleClicked = (id) => {    
+//         if(gameBoard[id] !== NO_PLAYER || gameState !== GAME_STATE_PLAYING) return;
+
+//         let newGameBoard = [...gameBoard];
+//         newGameBoard[id] = currentPlayer;
+
+//         if (isWinner(newGameBoard, id, currentPlayer)) {
+//             setGameState(GAME_STATE_WIN);
+//             setWinPlayer(currentPlayer);
+//         } else if (newGameBoard.every(circle => circle !== NO_PLAYER)) {
+//             setGameState(GAME_STATE_DRAW);
+//         } else {
+//             setCurrentPlayer(currentPlayer === PLAYER_1 ? PLAYER_2 : PLAYER_1);
+//         }
+//         setGameBoard(newGameBoard);
+//     };
+
+//     const renderCircle = id => {
+//         return ( 
+//             <GameCircle 
+//                 key={id} 
+//                 id={id} 
+//                 className={`player_${gameBoard[id]}`}  
+//                 onCircleClicked={circleClicked}
+//             />
+//         );
+//     };
+  
+//     const onSuggestClick = () => {
+//         if (gameState === GAME_STATE_PLAYING) {
+//             circleClicked(getComputerMove(gameBoard));
+//         }
+//     }
+
+//     const onNewGameClick = () => {
+//         initGame();
+//     }
+
+//     return (
+//         <>
+//             <Header gameState={gameState} currentPlayer={currentPlayer} winPlayer={winPlayer} />
+//             <div className="gameBoard">{initBoard()}</div>
+//             <Footer onSuggestClick={onSuggestClick} onNewGameClick={onNewGameClick} gamestate={gameState} />
+//         </>
+//     );
+// };
+
+// export default GameBoard;

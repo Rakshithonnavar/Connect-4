@@ -20,8 +20,8 @@ body{
 
 .panel{
   position: absolute;
-  background-color: lightcoral;
-  border: 8px solid burlywood;
+  background-color: yellow;
+  border: 8px solid red;
   -webkit-box-shadow: 7px 5px 5px px rgba(0,0,0,0.9);
   box-shadow: 7px 5px 5px px rgba(0,0,0,0.9);
   z-index: 1;
@@ -109,3 +109,6 @@ body{
 .player_2{
     background-color: blue;
 }
+
+
+/* https://socialify.git.ci/Rakshithonnavar/Harvest-Hub/image?description=1&descriptionEditable=&font=Bitter&forks=1&issues=1&language=1&name=1&owner=1&pattern=Circuit%20Board&pulls=1&stargazers=1&theme=Dark */
